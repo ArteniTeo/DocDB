@@ -2,7 +2,7 @@ package com.DocDB.controller;
 
 import com.DocDB.entities.User;
 import com.DocDB.exception.UserNotFoundException;
-import com.DocDB.reposiory.UserRepository;
+import com.DocDB.reposiory.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import static com.DocDB.validator.UserValidator.verifyPassword;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository repository;
+    private final IUserRepository repository;
 
     public User createUser(User user) {
         verifyEmail(user.getEmail());
@@ -23,7 +23,7 @@ public class UserService {
         if(findByEmail(user.getEmail()) != null) throw new RuntimeException("Email already in use.");
         if (findByUsername(user.getUsername()) != null) throw new RuntimeException("Username already in use.");
 
-        return repository.insert(user);
+        return repository.save(user);
     }
 
     User findByEmail(String email){
@@ -33,7 +33,7 @@ public class UserService {
         return repository.findByUsername(username);
     }
     User login(String username, String password){
-        return repository.login(username, password);
+        return repository.findByUsernameAndPassword(username, password);
     }
 
     public User getUserById(Long id) {
@@ -49,7 +49,7 @@ public class UserService {
     }
 
     public User updateUser(User user) {
-        return repository.update(user);
+        return repository.save(user);
     }
 
 }
