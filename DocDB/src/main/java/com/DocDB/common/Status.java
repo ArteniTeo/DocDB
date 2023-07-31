@@ -1,4 +1,4 @@
-package com.DocDB.dto;
+package com.DocDB.common;
 
 public enum Status {
     ACTIVE,

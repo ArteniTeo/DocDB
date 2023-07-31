@@ -1,8 +1,8 @@
 package com.DocDB.reposiory;
 
 import com.DocDB.entities.User;
-import com.DocDB.dto.AccountType;
-import com.DocDB.dto.Status;
+import com.DocDB.common.AccountType;
+import com.DocDB.common.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

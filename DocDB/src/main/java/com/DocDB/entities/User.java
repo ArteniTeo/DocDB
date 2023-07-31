@@ -1,7 +1,7 @@
 package com.DocDB.entities;
 
-import com.DocDB.dto.AccountType;
-import com.DocDB.dto.Status;
+import com.DocDB.common.AccountType;
+import com.DocDB.common.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
