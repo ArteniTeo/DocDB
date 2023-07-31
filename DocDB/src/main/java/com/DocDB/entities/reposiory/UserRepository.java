@@ -1,8 +1,8 @@
 package com.DocDB.entities.reposiory;
 
 import com.DocDB.entities.User;
-import com.DocDB.entities.enums.AccountType;
-import com.DocDB.entities.enums.Status;
+import com.DocDB.entities.dto.AccountType;
+import com.DocDB.entities.dto.Status;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
