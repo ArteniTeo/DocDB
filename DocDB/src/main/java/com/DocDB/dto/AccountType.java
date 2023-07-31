@@ -1,4 +1,4 @@
-package com.DocDB.entities.dto;
+package com.DocDB.dto;
 
 public enum AccountType {
     DOCTOR,
