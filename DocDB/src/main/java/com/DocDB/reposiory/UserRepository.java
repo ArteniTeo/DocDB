@@ -42,13 +42,5 @@ public record UserRepository(IUserRepository repository) {
 //        return repository.findByUsernameAndPassword(username, password);
 //    }
 //
-//    public List<User> findAllActivePatients(){
-//        return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.PATIENT);
-//    }
-//    public List<User> findAllSuspendedPatients(){
-//        return repository.findByStatusAndAccountType(Status.SUSPENDED, AccountType.PATIENT);
-//    }
-//    public List<User> findAllActiveDoctors(){
-//        return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.DOCTOR);
-//    }
+
 }

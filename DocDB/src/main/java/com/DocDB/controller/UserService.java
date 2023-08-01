@@ -1,11 +1,15 @@
 package com.DocDB.controller;
 
+import com.DocDB.common.AccountType;
+import com.DocDB.common.Status;
 import com.DocDB.entities.User;
 import com.DocDB.exception.UserNotFoundException;
 import com.DocDB.reposiory.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.DocDB.validator.UserValidator.verifyEmail;
 import static com.DocDB.validator.UserValidator.verifyPassword;
@@ -50,6 +54,16 @@ public class UserService {
 
     public User updateUser(User user) {
         return repository.save(user);
+    }
+
+    public List<User> findAllActivePatients(){
+        return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.PATIENT);
+    }
+    public List<User> findAllSuspendedPatients(){
+        return repository.findByStatusAndAccountType(Status.SUSPENDED, AccountType.PATIENT);
+    }
+    public List<User> findAllActiveDoctors(){
+        return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.DOCTOR);
     }
 
 }
