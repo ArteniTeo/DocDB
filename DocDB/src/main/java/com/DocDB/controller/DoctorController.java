@@ -19,17 +19,17 @@ public class DoctorController {
     }
 
     @RequestMapping(value = "/docByFirstname", method = RequestMethod.GET)
-    public Doctor getByFirstname(@RequestParam(value = "fname") String fname) {
+    public List<Doctor> getByFirstname(@RequestParam(value = "fname") String fname) {
         return service.findByFirstname(fname);
     }
 
     @RequestMapping(value = "/docByLastname", method = RequestMethod.GET)
-    public Doctor getByLastname(@RequestParam(value = "lname") String lname) {
+    public List<Doctor> getByLastname(@RequestParam(value = "lname") String lname) {
         return service.findByLastname(lname);
     }
 
     @RequestMapping(value = "/docByFullName", method = RequestMethod.GET)
-    public Doctor getByFullName(@RequestParam(value = "fname") String firstname,
+    public List<Doctor> getByFullName(@RequestParam(value = "fname") String firstname,
                                 @RequestParam(value = "lname") String lastname) {
         return service.findByFirstnameAndLastname(firstname,lastname);
     }

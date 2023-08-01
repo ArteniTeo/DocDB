@@ -8,9 +8,9 @@ import java.util.List;
 public interface IDoctorRepository extends JpaRepository<Doctor, Long> {
 
     Doctor findByUserId(Long id);
-    Doctor findByFirstname(String firstname);
-    Doctor findByLastname(String lastname);
-    Doctor findByFirstnameAndLastname(String firstname, String lastname);
+    List<Doctor> findByFirstname(String firstname);
+    List<Doctor> findByLastname(String lastname);
+    List<Doctor> findByFirstnameAndLastname(String firstname, String lastname);
     List<Doctor> findBySpeciality(String speciality);
 
 

@@ -28,9 +28,9 @@ public class DoctorService {
 
     Doctor findByUserId(Long id){return repository.findByUserId(id);}
 
-    Doctor findByFirstname(String firstname){return repository.findByFirstname(firstname);}
-    Doctor findByLastname(String lastname){return repository.findByLastname(lastname);}
-    Doctor findByFirstnameAndLastname(String firstname, String lastname){return repository.findByFirstnameAndLastname(firstname, lastname);}
+    List<Doctor> findByFirstname(String firstname){return repository.findByFirstname(firstname);}
+    List<Doctor> findByLastname(String lastname){return repository.findByLastname(lastname);}
+    List<Doctor> findByFirstnameAndLastname(String firstname, String lastname){return repository.findByFirstnameAndLastname(firstname, lastname);}
 
     public List<Doctor> findBySpeciality(String speciality){
         return repository.findBySpeciality(speciality);
