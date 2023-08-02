@@ -39,6 +39,11 @@ public class PatientController {
         return service.findByCnp(cnp);
     }
 
+    @RequestMapping(value = "/patientByPhone", method = RequestMethod.GET)
+    public Patient findByPhoneNumber(@RequestParam(value = "phone") String phone) {
+        return service.findByPhoneNumber(phone);
+    }
+
     @RequestMapping(value = "/patient", method = RequestMethod.POST)
     public Patient registerPatient(@RequestBody Patient Patient) {
         return service.createPatient(Patient);

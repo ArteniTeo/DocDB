@@ -7,10 +7,9 @@ public class UserValidator {
 
     public static void verifyEmail(String email) {
         if (!email.contains("@")) throw new InvalidEmailException(email);
-//        if (getUserByEmail(email) != null) throw new InvalidEmailException(email);
     }
 
     public static void verifyPassword(String password) {
-        if (password.length() < 5) throw new InvalidPasswordException(password);
+        if (password.length() < 5 || password.length() > 20) throw new InvalidPasswordException(password);
     }
 }

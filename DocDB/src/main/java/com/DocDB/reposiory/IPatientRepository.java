@@ -11,5 +11,6 @@ public interface IPatientRepository extends JpaRepository<Patient, Long>{
     List <Patient> findByLastname(String lastname);
     List<Patient> findByFirstnameAndLastname(String firstname, String lastname);
     Patient findByCnp(String cnp);
+    Patient findByPhoneNumber(String phoneNumber);
 
 }

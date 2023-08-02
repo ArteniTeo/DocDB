@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Entity
 @Getter
 @Setter
@@ -28,7 +30,10 @@ public class Patient {
     private Long userId;
     private String firstname;
     private String lastname;
+    @Column(unique = true)
     private String cnp;
+    @Column(name = "phone_number")
+    private String phoneNumber;
     @Column(name = "birth_day")
-    private String birthDay;
+    private Date birthDay;
 }
