@@ -15,11 +15,12 @@ public class PatientValidator {
         } else throw new InvalidPhoneNumberException(phoneNumber);
     }
 
-    public static void verifyAge(Date birthDay){
+    public static boolean verifyAge(Date birthDay){
         Date currentDate = new Date(System.currentTimeMillis());
         long difInMills = currentDate.getTime() - birthDay.getTime();
         long difInDays = TimeUnit.DAYS.convert(difInMills, TimeUnit.MILLISECONDS);
         long difInYears = difInDays / 365;
-        if(difInYears < 18) throw new InvalidAgeException(birthDay);
+        if(difInYears < 18) { throw new InvalidAgeException(birthDay); }
+        return true;
     }
 }
