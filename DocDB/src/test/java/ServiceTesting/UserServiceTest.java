@@ -19,11 +19,7 @@ import static com.DocDB.validator.UserValidator.verifyPassword;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-<<<<<<<< HEAD:DocDB/src/test/java/ServiceTesting/UserServiceTest.java
 public class UserServiceTest {
-========
-public class UserServiceTesting {
->>>>>>>> 50b44bc4a21d5b9731b3309511bcfabc9bb5f646:DocDB/src/test/java/ServiceTesting/UserServiceTesting.java
 
     @Mock
     IUserRepository repository;
