@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-public class userServiceTesting {
+public class UserServiceTest {
 
     @Mock
     IUserRepository repository;
