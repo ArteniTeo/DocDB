@@ -22,26 +22,16 @@ public class UserValidator {
         }
     }
 
-//    public static void verifyEmail(String email) {
-//        int index = email.indexOf('@');
-//
-//        if (index != -1 && index < email.length() - 1) {
-//            if(checkDomain(email.substring(index + 1))) { System.out.println("good"); }
-//            else throw new RuntimeException("Invalid email");
-//        } else throw new RuntimeException("Invalid email");
-//    }
-
-//    private static boolean checkDomain(String domain) {
-//        String[] validDomains = {"gmail.com", "yahoo.com", "hotmail.com", "example.com"};
-//
-//        for (String validDomain : validDomains) {
-//            if (validDomain.equalsIgnoreCase(domain)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
+    //TODO implement all password rules
+    /**
+     * password requirements:
+     * min 5 max 20 - DONE
+     * lower case
+     * upper case
+     * digits
+     * special characters: !@#$
+     * @param password
+     */
     public static void verifyPassword(String password) {
         if (password.length() < 5 || password.length() > 20) throw new InvalidPasswordException(password);
     }

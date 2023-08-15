@@ -5,7 +5,6 @@ import com.DocDB.common.Status;
 import com.DocDB.controller.UserService;
 import com.DocDB.entities.User;
 import com.DocDB.reposiory.IUserRepository;
-import com.DocDB.validator.UserValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,10 +17,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static com.DocDB.validator.UserValidator.verifyEmail;
 import static com.DocDB.validator.UserValidator.verifyPassword;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
+<<<<<<<< HEAD:DocDB/src/test/java/ServiceTesting/UserServiceTest.java
 public class UserServiceTest {
+========
+public class UserServiceTesting {
+>>>>>>>> 50b44bc4a21d5b9731b3309511bcfabc9bb5f646:DocDB/src/test/java/ServiceTesting/UserServiceTesting.java
 
     @Mock
     IUserRepository repository;
@@ -29,11 +31,9 @@ public class UserServiceTest {
     @InjectMocks
     UserService service;
 
-    // TODO Make testing method for create user from UserService class
-
     @ParameterizedTest
     @ValueSource (strings = {"good@email.com", "anotherGood@domain.ro"})
-    @DisplayName("Verify good emails with validator method")
+    @DisplayName("Verify good emails with ")
     void testGoodEmailWithEmailVerifyingMethod(String goodEmails){
         assertDoesNotThrow(() -> verifyEmail(goodEmails));
     }
