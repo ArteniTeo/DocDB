@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.DocDB.validator.UserValidator.verifyEmail;
-import static com.DocDB.validator.UserValidator.verifyPassword;
+import static com.DocDB.validator.UserValidator.*;
 
 @Slf4j
 @Service
@@ -22,7 +21,7 @@ public class UserService {
     private final IUserRepository repository;
 
     public User createUser(User user) {
-        verifyEmail(user.getEmail());
+        if (!isEmailValid(user.getEmail())) throw new RuntimeException("Invalid email.");
         verifyPassword(user.getPassword());
         if (findByEmail(user.getEmail()) != null) throw new RuntimeException("Email already in use.");
         if (findByUsername(user.getUsername()) != null) throw new RuntimeException("Username already in use.");
@@ -30,14 +29,20 @@ public class UserService {
         return repository.save(user);
     }
 
-    User findByEmail(String email){
+    User findByEmail(String email) {
         return repository.findByEmail(email);
     }
-    User findByUsername(String username){
+
+    User findByUsername(String username) {
         return repository.findByUsername(username);
     }
-    User login(String username, String password){
-        return repository.findByUsernameAndPassword(username, password);
+
+    User login(String identifier, String password) {
+        if (isEmailValid(identifier))
+            return repository.findByEmailAndPassword(identifier, password).orElse(new User(0L));
+        else
+            return repository.findByUsernameAndPassword(identifier, password).orElse(new User(0L));
+
     }
 
     public User getUserById(Long id) {
@@ -56,13 +61,15 @@ public class UserService {
         return repository.save(user);
     }
 
-    public List<User> findAllActivePatients(){
+    public List<User> findAllActivePatients() {
         return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.PATIENT);
     }
-    public List<User> findAllSuspendedPatients(){
+
+    public List<User> findAllSuspendedPatients() {
         return repository.findByStatusAndAccountType(Status.SUSPENDED, AccountType.PATIENT);
     }
-    public List<User> findAllActiveDoctors(){
+
+    public List<User> findAllActiveDoctors() {
         return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.DOCTOR);
     }
 

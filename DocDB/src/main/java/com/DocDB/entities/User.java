@@ -36,4 +36,8 @@ public class User {
     @Column(name = "account_type")
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
+
+    public User(Long id) {
+        this.id = id;
+    }
 }

@@ -14,9 +14,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.DocDB.validator.UserValidator.verifyEmail;
-import static com.DocDB.validator.UserValidator.verifyPassword;
+import static com.DocDB.validator.UserValidator.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -28,67 +28,84 @@ public class UserServiceTest {
     UserService service;
 
     @ParameterizedTest
-    @ValueSource (strings = {"good@email.com", "anotherGood@domain.ro"})
-    @DisplayName("Verify good emails with ")
-    void testGoodEmailWithEmailVerifyingMethod(String goodEmails){
-        assertDoesNotThrow(() -> verifyEmail(goodEmails));
+    @ValueSource (strings = {"good@email.com", "another.good@domain.ro"})
+    @DisplayName("Verify good emails")
+    void givenGoodEmail_whenVerifyingEmail_thenDoesNothing(String goodEmails){
+        assertTrue(() -> isEmailValid(goodEmails));
     }
 
     @ParameterizedTest
     @ValueSource (strings = {"something@email..com", "something@emailcom", "somethingEmail.com", "@email.com", "test@"})
-    @DisplayName("Verify bad emails with validator method")
-    void testBadEmailWithEmailVerifyingMethod(String badEmails){
-        assertThrows(RuntimeException.class, () -> verifyEmail(badEmails));
-    }
-
-    @Test
-    @DisplayName("Verify good password with validator method")
-    void testGoodPasswordsWithPasswordVerifyingMethod(){
-        String password1 = "GoodPassword";
-        assertDoesNotThrow(() -> verifyPassword(password1));
+    @DisplayName("Verify bad emails")
+    void givenBadEmail_whenVerifyingEmail_thenThrowsException(String badEmails){
+        assertFalse(() -> isEmailValid(badEmails));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"bad", "passwordIsTooLongAndWillReturnException"})
-    @DisplayName("Verify bad password with validator method")
-    void testBadPasswordsWithPasswordVerifyingMethod(String string){
+    @ValueSource(strings = {"Good Password !23","GoodPassword!23"})
+    @DisplayName("Verify good password")
+    void givenGoodPassword_whenPasswordVerifying_thenDoesNothing(String passwords){
+        assertDoesNotThrow(() -> verifyPassword(passwords));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "bad", "NoDigitsOrSymbols", "Not1Symbol", "NoNumbers!@#", "passwordIsTooLongAndWillReturnException"})
+    @DisplayName("Verify bad password")
+    void givenBadPassword_whenPasswordVerifying_thenThrowsException(String string){
         assertThrows(RuntimeException.class, () -> verifyPassword(string));
     }
 
     @Test
-    @DisplayName("Testing creation of user and insertion in DB")
-    void testCreateUser(){
+    @DisplayName("Testing creation of user")
+    void givenUser_whenCreatingUser_thenReturnUser(){
         //given
         var user = new User();
-        String email = "testmail@gmail.com";
-        user.setEmail(email);
+        user.setEmail("testmail@gmail.com");
         user.setUsername("testUsername");
-        user.setPassword("testPassword");
+        user.setPassword("Password!23");
         user.setStatus(Status.ACTIVE);
         user.setAccountType(AccountType.DOCTOR);
+        given(repository.save(user)).willReturn(user);
 
         //when
         User foundUser = service.createUser(user);
 
         //then
-        assertEquals(email, user.getEmail());
+        assertEquals(user, foundUser);
 
     }
 
     @Test
-    @DisplayName("Testing creation of user with invalid email")
-    void testCreateUserWithInvalidEmail(){
+    @DisplayName("Testing creation of user with email that is already in use")
+    void givenUserWithAnEmailThatIsAlreadyInUse_whenCreatingUser_thenThrowException(){
         //given
         var user = new User();
-        String email = "testmail@notRight.com";
-        user.setEmail(email);
+        user.setEmail("emailAlreadyInUse@used.com");
         user.setUsername("testUsername");
-        user.setPassword("testPassword");
+        user.setPassword("Password!23");
         user.setStatus(Status.ACTIVE);
         user.setAccountType(AccountType.DOCTOR);
+        given(repository.findByEmail("emailAlreadyInUse@used.com")).willReturn(user);
 
         //then
-        assertDoesNotThrow(() -> service.createUser(user));
+        assertThrows(RuntimeException.class, () -> service.createUser(user));
+
+    }
+
+    @Test
+    @DisplayName("Testing creation of user with username that is already in use")
+    void givenUserWithAnUsernameThatIsAlreadyInUse_whenCreatingUser_thenThrowException(){
+        //given
+        var user = new User();
+        user.setEmail("email@good.com");
+        user.setUsername("UsedUsername");
+        user.setPassword("Password!23");
+        user.setStatus(Status.ACTIVE);
+        user.setAccountType(AccountType.DOCTOR);
+        given(repository.findByUsername("UsedUsername")).willReturn(user);
+
+        //then
+        assertThrows(RuntimeException.class, () -> service.createUser(user));
 
     }
 
