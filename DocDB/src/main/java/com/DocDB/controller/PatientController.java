@@ -30,8 +30,8 @@ public class PatientController {
 
     @RequestMapping(value = "/patientByFullName", method = RequestMethod.GET)
     public List<Patient> getByFullName(@RequestParam(value = "fname") String firstname,
-                                      @RequestParam(value = "lname") String lastname) {
-        return service.findByFirstnameAndLastname(firstname,lastname);
+                                       @RequestParam(value = "lname") String lastname) {
+        return service.findByFirstnameAndLastname(firstname, lastname);
     }
 
     @RequestMapping(value = "/patientByCnp", method = RequestMethod.GET)
@@ -40,7 +40,7 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/patientByPhone", method = RequestMethod.GET)
-    public Patient findByPhoneNumber(@RequestParam(value = "phone") String phone) {
+    public List<Patient> findByPhoneNumber(@RequestParam(value = "phone") String phone) {
         return service.findByPhoneNumber(phone);
     }
 

@@ -1,6 +1,8 @@
 package com.DocDB.entities;
 
+import com.DocDB.common.Gender;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,8 +13,9 @@ import java.sql.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "patients")
-public class Patient {
+public class Patient{
     public static final String RESOURCE_NAME = "patient";
 
     @Id
@@ -36,4 +39,15 @@ public class Patient {
     private String phoneNumber;
     @Column(name = "birth_day")
     private Date birthDay;
+    private Gender gender;
+
+    public Patient(Long userId, String firstname, String lastname, String cnp, String phoneNumber, Date birthDay, Gender gender) {
+        this.userId = userId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.cnp = cnp;
+        this.phoneNumber = phoneNumber;
+        this.birthDay = birthDay;
+        this.gender = gender;
+    }
 }
