@@ -26,11 +26,10 @@ public class DoctorService {
         return repository.save(doctor);
     }
 
-    Doctor findByUserId(Long id){return repository.findByUserId(id);}
-
-    List<Doctor> findByFirstname(String firstname){return repository.findByFirstname(firstname);}
-    List<Doctor> findByLastname(String lastname){return repository.findByLastname(lastname);}
-    List<Doctor> findByFirstnameAndLastname(String firstname, String lastname){return repository.findByFirstnameAndLastname(firstname, lastname);}
+    public Doctor findByUserId(Long id){ return repository.findByUserId(id);}
+    public List<Doctor> findByFirstname(String firstname){return repository.findByFirstname(firstname);}
+    public List<Doctor> findByLastname(String lastname){return repository.findByLastname(lastname);}
+    public List<Doctor> findByFirstnameAndLastname(String firstname, String lastname){return repository.findByFirstnameAndLastname(firstname, lastname);}
 
     public List<Doctor> findBySpeciality(String speciality){
         return repository.findBySpeciality(speciality);

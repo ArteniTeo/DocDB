@@ -24,7 +24,7 @@ public class UserService {
     public User createUser(User user) {
         verifyEmail(user.getEmail());
         verifyPassword(user.getPassword());
-        if(findByEmail(user.getEmail()) != null) throw new RuntimeException("Email already in use.");
+        if (findByEmail(user.getEmail()) != null) throw new RuntimeException("Email already in use.");
         if (findByUsername(user.getUsername()) != null) throw new RuntimeException("Username already in use.");
 
         return repository.save(user);

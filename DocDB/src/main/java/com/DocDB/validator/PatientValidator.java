@@ -7,12 +7,13 @@ import java.sql.Date;
 import java.util.concurrent.TimeUnit;
 
 public class PatientValidator {
-    public static void verifyPhoneNumber(String phoneNumber) {
+    public static boolean verifyPhoneNumber(String phoneNumber) {
         if(phoneNumber.length() >= 7 && phoneNumber.length() <= 12) {
             for (char c : phoneNumber.toCharArray()) {
                 if (!Character.isDigit(c)) throw new InvalidPhoneNumberException(phoneNumber);
             }
         } else throw new InvalidPhoneNumberException(phoneNumber);
+        return true;
     }
 
     public static boolean verifyAge(Date birthDay){
