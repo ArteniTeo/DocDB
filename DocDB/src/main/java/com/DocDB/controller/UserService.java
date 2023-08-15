@@ -25,6 +25,8 @@ public class UserService {
         verifyPassword(user.getPassword());
         if (findByEmail(user.getEmail()) != null) throw new RuntimeException("Email already in use.");
         if (findByUsername(user.getUsername()) != null) throw new RuntimeException("Username already in use.");
+        user.setStatus(Status.UNCOMPLETED);
+        user.setAccountType(AccountType.PATIENT);
 
         return repository.save(user);
     }
