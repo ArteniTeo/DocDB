@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Table(name = "doctors")
-public class Doctor extends User{
+public class Doctor {
     public static final String RESOURCE_NAME = "doctor";
 
     @Id

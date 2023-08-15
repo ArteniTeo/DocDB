@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
+
     private final UserService service;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
@@ -20,19 +21,17 @@ public class UserController {
     public User getUserByEmail(@RequestParam(value = "email") String email) {
         return service.findByEmail(email);
     }
-
     @RequestMapping(value = "/userByUsername", method = RequestMethod.GET)
     public User findByUsername(@RequestParam(value = "username") String username) {
         return service.findByUsername(username);
     }
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public User login(@RequestParam(value = "identifier") String identifier,
                       @RequestParam(value = "password") String password) {
         return service.login(identifier, password);
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
     public User signup(@RequestBody User user) {
         return service.createUser(user);
     }
