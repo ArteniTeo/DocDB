@@ -1,5 +1,6 @@
 package com.DocDB.entities;
 
+import com.DocDB.common.Gender;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,4 +37,6 @@ public class Patient {
     private String phoneNumber;
     @Column(name = "birth_day")
     private Date birthDay;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 }

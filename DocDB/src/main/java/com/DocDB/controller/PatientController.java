@@ -45,8 +45,8 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/patient", method = RequestMethod.POST)
-    public Patient registerPatient(@RequestBody Patient Patient) {
-        return service.createPatient(Patient);
+    public Patient registerPatient(@RequestBody Patient patient) {
+        return service.createPatient(patient);
     }
 
     @RequestMapping(value = "/patient", method = RequestMethod.PUT)
