@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.DocDB.validator.PatientValidator.verifyPhoneNumber;
-import static com.DocDB.validator.PatientValidator.verifyAge;
+import static com.DocDB.validator.PatientValidator.*;
 
 @Slf4j
 @Service
@@ -25,6 +24,8 @@ public class PatientService {
     public Patient createPatient(Patient patient) {
         verifyPhoneNumber(patient.getPhoneNumber());
         verifyAge(patient.getBirthDay());
+        verifyCnp(patient.getCnp(), patient.getBirthDay(), patient.getGender());
+
         if(findByCnp(patient.getCnp()) != null) throw new RuntimeException("CNP already in use.");
 
         User updateUser = userService.getUserById(patient.getUserId());
