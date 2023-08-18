@@ -1,4 +1,4 @@
-package ControllerTesting;
+package com.DocDB.test;
 
 import com.DocDB.controller.DoctorController;
 import com.DocDB.controller.DoctorService;
