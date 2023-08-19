@@ -7,6 +7,7 @@ import com.DocDB.exception.UserNotFoundException;
 import com.DocDB.reposiory.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +48,7 @@ public class UserService {
 
     }
 
+    @Cacheable("users")
     public User getUserById(Long id) {
         return repository.findById(id).orElseGet(() -> {
             log.warn("user not found for id {}", id);
