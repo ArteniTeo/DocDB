@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -25,6 +27,10 @@ public class AppointmentService {
 
     public void cancelAppointment(Appointment appointment){
         repository.delete(appointment);
+    }
+
+    public List<Appointment> doctorAppointments(Long id){
+        return repository.getAppointmentByDoctorId(id);
     }
 
 }

@@ -24,6 +24,11 @@ public class AppointmentController {
         return repository.findById(id).orElseThrow();
     }
 
+    @GetMapping(value = "/appointmentByDoctor")
+    public Appointment getAppointmentByDoctorId(@RequestParam(value = "id") Long id){
+        return repository.findById(id).orElseThrow();
+    }
+
     @PostMapping(value = "/appointment")
     public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
         Appointment createdAppointment = service.createAppointment(appointment);

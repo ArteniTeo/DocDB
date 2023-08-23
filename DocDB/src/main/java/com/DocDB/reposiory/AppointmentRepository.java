@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 
-    Appointment getAppointmentByPatientId(Long id);
-
-    Appointment getAppointmentByDoctorId(Long id);
+    List <Appointment> getAppointmentByPatientId(Long id);
 
     List<Appointment> getAppointmentByDate(Date date);
+
+    List<Appointment> getAppointmentByDoctorId(Long id);
 
     Appointment getAppointmentByPatientIdAndDate(Long id, Date date);
 
