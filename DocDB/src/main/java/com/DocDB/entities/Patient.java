@@ -1,10 +1,14 @@
 package com.DocDB.entities;
 
 import com.DocDB.common.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.sql.Date;
 
@@ -39,4 +43,14 @@ public class Patient {
     private Date birthDay;
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+//    @OneToOne
+//    @JoinColumn(name = "appointment_id")
+
+    @ToString.Exclude
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "appointment_id")
+    @Fetch(FetchMode.JOIN)
+    private Appointment appointment;
 }
