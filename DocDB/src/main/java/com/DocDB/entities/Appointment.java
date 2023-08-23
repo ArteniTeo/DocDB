@@ -43,19 +43,8 @@ public class Appointment {
     private String details;
     private String observations;
 
-    /**
-     *     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-     *     @JoinColumn(name = "post_id", nullable = false)
-     *     @OnDelete(action = OnDeleteAction.CASCADE)
-     *     @JsonIgnore
-     */
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "patient_id", insertable=false, updatable=false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "patient_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
 }
