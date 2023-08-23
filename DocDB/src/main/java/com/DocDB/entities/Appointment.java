@@ -1,11 +1,17 @@
 package com.DocDB.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import java.sql.Date;
 
 
@@ -30,16 +36,26 @@ public class Appointment {
             generator = "appointments_id_seq"
     )
     private Long id;
-    @Column(name = "patient_id")
-    private Long patientId;
+
     @Column(name = "doctor_id")
     private Long doctorId;
     private Date date;
     private String details;
     private String observations;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id")
+    /**
+     *     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+     *     @JoinColumn(name = "post_id", nullable = false)
+     *     @OnDelete(action = OnDeleteAction.CASCADE)
+     *     @JsonIgnore
+     */
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "patient_id", insertable=false, updatable=false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "patient_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Patient patient;
 
 }

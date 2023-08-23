@@ -81,4 +81,4 @@ ALTER SEQUENCE "DocDB".users_id_seq
 
    INSERT INTO "DocDB".appointments(
    	patient_id, doctor_id, date, details, observations)
-   	VALUES (1, 1, '2023-08-23', 'No details', '');
+   	VALUES (1, 1, '2023-08-23', 'No details', 'No observations');

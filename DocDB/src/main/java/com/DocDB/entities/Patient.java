@@ -11,6 +11,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -44,13 +45,10 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-//    @OneToOne
-//    @JoinColumn(name = "appointment_id")
-
-    @ToString.Exclude
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "appointment_id")
-    @Fetch(FetchMode.JOIN)
-    private Appointment appointment;
+//    @ToString.Exclude
+//    @JsonIgnore
+//    @ManyToOne(fetch = FetchType.EAGER)
+////    @JoinColumn(name = "appointment_id", insertable = false, updatable = false)
+//    @Fetch(FetchMode.JOIN)
+//    private List<Appointment> appointments;
 }
