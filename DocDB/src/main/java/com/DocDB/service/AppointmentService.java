@@ -29,7 +29,7 @@ public class AppointmentService {
         repository.delete(appointment);
     }
 
-    public List<Appointment> doctorAppointments(Long id){
+    public List<Appointment> getDoctorAppointments(Long id){
         return repository.getAppointmentByDoctorId(id);
     }
 

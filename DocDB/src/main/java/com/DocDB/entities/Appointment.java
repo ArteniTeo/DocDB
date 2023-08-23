@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.sql.Date;
 
+
 @Entity
 @Getter
 @Setter
@@ -37,6 +38,8 @@ public class Appointment {
     private String details;
     private String observations;
 
-//    private Patient patient;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
 
 }

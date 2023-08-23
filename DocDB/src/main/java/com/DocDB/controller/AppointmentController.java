@@ -24,9 +24,9 @@ public class AppointmentController {
         return repository.findById(id).orElseThrow();
     }
 
-    @GetMapping(value = "/appointmentByDoctor")
-    public Appointment getAppointmentByDoctorId(@RequestParam(value = "id") Long id){
-        return repository.findById(id).orElseThrow();
+    @GetMapping(value = "/appointmentsByDoctor")
+    public List <Appointment> getAppointmentsByDoctorId(@RequestParam(value = "id") Long id){
+        return service.getDoctorAppointments(id);
     }
 
     @PostMapping(value = "/appointment")
