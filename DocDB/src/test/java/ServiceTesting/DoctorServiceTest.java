@@ -1,6 +1,6 @@
 package ServiceTesting;
 
-import com.DocDB.controller.DoctorService;
+import com.DocDB.service.DoctorService;
 import com.DocDB.entities.Doctor;
 import com.DocDB.reposiory.IDoctorRepository;
 import org.junit.jupiter.api.Test;

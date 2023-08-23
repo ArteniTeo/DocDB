@@ -1,6 +1,7 @@
 package com.DocDB.controller;
 
 import com.DocDB.entities.Patient;
+import com.DocDB.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.DocDB.controller;
+package com.DocDB.service;
 
 import com.DocDB.common.AccountType;
 import com.DocDB.common.Status;
@@ -32,15 +32,15 @@ public class UserService {
         return repository.save(user);
     }
 
-    User findByEmail(String email) {
+    public User findByEmail(String email) {
         return repository.findByEmail(email);
     }
 
-    User findByUsername(String username) {
+    public User findByUsername(String username) {
         return repository.findByUsername(username);
     }
 
-    User login(String identifier, String password) {
+    public User login(String identifier, String password) {
         if (isEmailValid(identifier))
             return repository.findByEmailAndPassword(identifier, password).orElse(new User(0L));
         else
@@ -65,15 +65,15 @@ public class UserService {
         return repository.save(user);
     }
 
-    public List<User> findAllActivePatients() {
+    public List<User> getAllActivePatients() {
         return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.PATIENT);
     }
 
-    public List<User> findAllSuspendedPatients() {
+    public List<User> getAllSuspendedPatients() {
         return repository.findByStatusAndAccountType(Status.SUSPENDED, AccountType.PATIENT);
     }
 
-    public List<User> findAllActiveDoctors() {
+    public List<User> getAllActiveDoctors() {
         return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.DOCTOR);
     }
 

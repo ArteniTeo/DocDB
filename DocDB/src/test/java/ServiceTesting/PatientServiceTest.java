@@ -1,8 +1,8 @@
 package ServiceTesting;
 
 import com.DocDB.common.Gender;
-import com.DocDB.controller.PatientService;
-import com.DocDB.controller.UserService;
+import com.DocDB.service.PatientService;
+import com.DocDB.service.UserService;
 import com.DocDB.entities.Patient;
 import com.DocDB.entities.User;
 import com.DocDB.exception.InvalidPhoneNumberException;

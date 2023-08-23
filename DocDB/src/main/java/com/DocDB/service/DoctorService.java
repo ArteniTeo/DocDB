@@ -1,4 +1,4 @@
-package com.DocDB.controller;
+package com.DocDB.service;
 
 import com.DocDB.entities.Doctor;
 import com.DocDB.reposiory.IDoctorRepository;

@@ -29,54 +29,58 @@ public class PatientValidator {
     }
 
     public static boolean verifyCnp(String cnp, Date birthDay, Gender gender) {
-        boolean bornBefore00;
-
-        //verify Gender
-        int expectedGender = Character.getNumericValue(cnp.charAt(0));
-        if (gender.equals(Gender.MALE)) {
-            if (expectedGender == 1) {
-                bornBefore00 = true;
-            } else if (expectedGender == 5) {
-                bornBefore00 = false;
-            } else {
-                throw new RuntimeException("Invalid CNP, gender does not match.");
-            }
-        } else {
-            if (expectedGender == 2) {
-                bornBefore00 = true;
-            } else if (expectedGender == 6) {
-                bornBefore00 = false;
-            } else {
-                throw new RuntimeException("Invalid CNP, gender does not match.");
-            }
-        }
-        if (bornBefore00) {
-            if (Character.getNumericValue(cnp.charAt(0)) != 1 && Character.getNumericValue(cnp.charAt(0)) != 2)
-                throw new RuntimeException("Invalid CNP, first digit does not correspond");
-        } else {
-            if (Character.getNumericValue(cnp.charAt(0)) != 5 && Character.getNumericValue(cnp.charAt(0)) != 6)
-                throw new RuntimeException("Invalid CNP, first digit does not correspond");
-        }
-
-        //verify birthday
-        int yy = Character.getNumericValue(cnp.charAt(1)) * 10 + Character.getNumericValue(cnp.charAt(2)) + 100;
-        int mm = Character.getNumericValue(cnp.charAt(3)) * 10 + Character.getNumericValue(cnp.charAt(4)) - 1;
-        int dd = Character.getNumericValue(cnp.charAt(5)) * 10 + Character.getNumericValue(cnp.charAt(6));
-        Date cnpBirthDay = new Date(yy, mm, dd);
-
-        if (!cnpBirthDay.equals(birthDay))
-            throw new RuntimeException("Invalid CNP, CNP birth day and given birth day do not correspond.");
-
-        //verify control digit
-        int[] coefficient = {2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9};
-        int sum = 0;
-        for (int i = 0; i < 12; i++) {
-            sum += Character.getNumericValue(cnp.charAt(i)) * coefficient[i];
-        }
-        int controlDigit = sum % 11;
-        if (controlDigit == 10) controlDigit = 1;
-        int lastDigit = Character.getNumericValue(cnp.charAt(12));
-        if (controlDigit != lastDigit) throw new RuntimeException("Invalid CNP, control digit is invalid");
+//        boolean bornBefore00;
+//
+//        int expectedGender = Character.getNumericValue(cnp.charAt(0));
+//        if (gender.equals(Gender.MALE)) {
+//            if (expectedGender == 1) {
+//                bornBefore00 = true;
+//            } else if (expectedGender == 5) {
+//                bornBefore00 = false;
+//            } else {
+//                throw new RuntimeException("Invalid CNP, gender does not match.");
+//            }
+//        } else {
+//            if (expectedGender == 2) {
+//                bornBefore00 = true;
+//            } else if (expectedGender == 6) {
+//                bornBefore00 = false;
+//            } else {
+//                throw new RuntimeException("Invalid CNP, gender does not match.");
+//            }
+//        }
+//        if (bornBefore00) {
+//            if (Character.getNumericValue(cnp.charAt(0)) != 1 && Character.getNumericValue(cnp.charAt(0)) != 2)
+//                throw new RuntimeException("Invalid CNP, first digit does not correspond");
+//        } else {
+//            if (Character.getNumericValue(cnp.charAt(0)) != 5 && Character.getNumericValue(cnp.charAt(0)) != 6)
+//                throw new RuntimeException("Invalid CNP, first digit does not correspond");
+//        }
+//
+//
+//
+//        int yy = Character.getNumericValue(cnp.charAt(1)) * 10 + Character.getNumericValue(cnp.charAt(2)) + 100;
+//        int mm = Character.getNumericValue(cnp.charAt(3)) * 10 + Character.getNumericValue(cnp.charAt(4)) - 1;
+//        int dd = Character.getNumericValue(cnp.charAt(5)) * 10 + Character.getNumericValue(cnp.charAt(6));
+//        Date cnpBirthDay = new Date(yy, mm, dd);
+//
+//        System.out.println("cnpBd = " + cnpBirthDay + " time = " + cnpBirthDay.getTime());
+//        System.out.println("given bD = " + birthDay + " time = " + birthDay.getTime());
+//        if (!cnpBirthDay.equals(birthDay)){
+//            throw new RuntimeException("Invalid CNP, CNP birth day and given birth day do not correspond.");
+//        }
+//
+//
+//
+//        int[] coefficient = {2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9};
+//        int sum = 0;
+//        for (int i = 0; i < 12; i++) {
+//            sum += Character.getNumericValue(cnp.charAt(i)) * coefficient[i];
+//        }
+//        int controlDigit = sum % 11;
+//        if (controlDigit == 10) controlDigit = 1;
+//        int lastDigit = Character.getNumericValue(cnp.charAt(12));
+//        if (controlDigit != lastDigit) throw new RuntimeException("Invalid CNP, control digit is invalid");
 
         return true;
     }
