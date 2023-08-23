@@ -1,7 +1,13 @@
 -- here will be all SQLs
 
---appointments create query :
+--schema create query
+CREATE SCHEMA IF NOT EXISTS "DocDB"
+    AUTHORIZATION postgres;
 
+
+
+
+--appointments create query :
 CREATE TABLE IF NOT EXISTS "DocDB".appointments
 (
     id integer NOT NULL DEFAULT nextval('"DocDB".appointments_id_seq'::regclass),
