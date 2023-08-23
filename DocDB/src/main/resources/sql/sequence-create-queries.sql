@@ -65,5 +65,20 @@ ALTER SEQUENCE "DocDB".users_id_seq
 
 
    INSERT INTO "DocDB".users(
-    	email, username, password, status, account_type)
-    	VALUES ('ira@gmail.com', 'ira', 'pswd', 'ACTIVE', 'PATIENT');
+    email, username, password, status, account_type)
+    VALUES ('ira@gmail.com', 'ira', 'pswd', 'ACTIVE', 'PATIENT');
+
+
+   INSERT INTO "DocDB".patients(
+   	user_id, firstname, lastname, phone_number, cnp, birth_day, gender)
+   	VALUES (1, 'FirstName', 'LastName', '0730679884', '9084903926731', '1980-05-19', 'FEMALE');
+
+
+   INSERT INTO "DocDB".doctors(
+   	user_id, firstname, lastname, speciality)
+   	VALUES (1, 'Artur', 'Donica', 'Din ala pt spate');
+
+
+   INSERT INTO "DocDB".appointments(
+   	patient_id, doctor_id, date, details, observations)
+   	VALUES (1, 1, '2023-08-23', 'No details', '');
