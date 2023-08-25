@@ -33,4 +33,8 @@ public class AppointmentService {
         return repository.getAppointmentByDoctorId(id);
     }
 
+    public List<Appointment> getPatientAppointments(Long id){
+        return repository.getAppointmentByPatientId(id);
+    }
+
 }

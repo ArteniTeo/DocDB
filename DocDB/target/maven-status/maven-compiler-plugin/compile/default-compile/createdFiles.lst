@@ -10,7 +10,6 @@ com\DocDB\entities\Patient.class
 com\DocDB\entities\Appointment.class
 com\DocDB\exception\UserNotFoundException.class
 com\DocDB\entities\User.class
-com\DocDB\entities\AppDocPat.class
 com\DocDB\controller\AppointmentController.class
 com\DocDB\reposiory\IUserRepository.class
 com\DocDB\common\AccountType.class

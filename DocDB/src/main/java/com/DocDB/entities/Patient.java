@@ -45,10 +45,4 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-//    @ToString.Exclude
-//    @JsonIgnore
-//    @ManyToOne(fetch = FetchType.EAGER)
-////    @JoinColumn(name = "appointment_id", insertable = false, updatable = false)
-//    @Fetch(FetchMode.JOIN)
-//    private List<Appointment> appointments;
 }

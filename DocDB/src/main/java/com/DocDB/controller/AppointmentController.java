@@ -29,6 +29,11 @@ public class AppointmentController {
         return service.getDoctorAppointments(id);
     }
 
+    @GetMapping(value = "/appointmentsByPatient")
+    public List <Appointment> getAppointmentsByPatientId(@RequestParam(value = "id") Long id){
+        return service.getPatientAppointments(id);
+    }
+
     @PostMapping(value = "/appointment")
     public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
         Appointment createdAppointment = service.createAppointment(appointment);

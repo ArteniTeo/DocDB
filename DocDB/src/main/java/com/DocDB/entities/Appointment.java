@@ -36,9 +36,6 @@ public class Appointment {
             generator = "appointments_id_seq"
     )
     private Long id;
-
-    @Column(name = "doctor_id")
-    private Long doctorId;
     private Date date;
     private String details;
     private String observations;
@@ -46,5 +43,9 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
 
 }
