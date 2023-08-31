@@ -1,5 +1,6 @@
 package com.DocDB.entities;
 
+import com.DocDB.common.AppointmentType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -39,11 +40,11 @@ public class Appointment {
     private Date date;
     private String details;
     private String observations;
+    private AppointmentType type;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
-
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
