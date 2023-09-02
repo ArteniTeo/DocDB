@@ -15,8 +15,14 @@ public class LabResult {
 
     private Long id;
 
-    private Long appointmentId;
+    private Long patientId;
+
+    private Long doctorId;
+
+    private Date examDate;
 
     private String examinationName;
+
+    private String results;
 
 }

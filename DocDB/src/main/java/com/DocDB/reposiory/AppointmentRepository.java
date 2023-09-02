@@ -1,5 +1,6 @@
 package com.DocDB.reposiory;
 
+import com.DocDB.common.AppointmentType;
 import com.DocDB.entities.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,7 +16,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
     List<Appointment> getAppointmentByDoctorId(Long id);
 
     Appointment getAppointmentByPatientIdAndDate(Long id, Date date);
-
 
 
 }
