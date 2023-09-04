@@ -6,7 +6,7 @@ import com.DocDB.service.UserService;
 import com.DocDB.entities.Patient;
 import com.DocDB.entities.User;
 import com.DocDB.exception.InvalidPhoneNumberException;
-import com.DocDB.reposiory.IPatientRepository;
+import com.DocDB.reposiory.PatientRepository;
 import com.DocDB.validator.PatientValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,7 +26,7 @@ import static org.mockito.BDDMockito.given;
 public class PatientServiceTest {
 
     @Mock
-    private IPatientRepository repository;
+    private PatientRepository repository;
 
     @Mock
     private UserService userService;

@@ -4,7 +4,7 @@ import com.DocDB.common.AccountType;
 import com.DocDB.common.Status;
 import com.DocDB.entities.User;
 import com.DocDB.exception.UserNotFoundException;
-import com.DocDB.reposiory.IUserRepository;
+import com.DocDB.reposiory.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -19,7 +19,7 @@ import static com.DocDB.validator.UserValidator.*;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final IUserRepository repository;
+    private final UserRepository repository;
 
     public User createUser(User user) {
         if (!isEmailValid(user.getEmail())) throw new RuntimeException("Invalid email.");

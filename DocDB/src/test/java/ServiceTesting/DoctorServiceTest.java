@@ -2,7 +2,7 @@ package ServiceTesting;
 
 import com.DocDB.service.DoctorService;
 import com.DocDB.entities.Doctor;
-import com.DocDB.reposiory.IDoctorRepository;
+import com.DocDB.reposiory.DoctorRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,7 +16,7 @@ import static org.mockito.BDDMockito.given;
 public class DoctorServiceTest {
 
     @Mock
-    IDoctorRepository repository;
+    DoctorRepository repository;
 
     @InjectMocks
     DoctorService service;

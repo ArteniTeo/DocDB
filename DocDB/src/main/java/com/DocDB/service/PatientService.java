@@ -3,7 +3,7 @@ package com.DocDB.service;
 import com.DocDB.common.Status;
 import com.DocDB.entities.Patient;
 import com.DocDB.entities.User;
-import com.DocDB.reposiory.IPatientRepository;
+import com.DocDB.reposiory.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import static com.DocDB.validator.PatientValidator.*;
 @RequiredArgsConstructor
 public class PatientService {
 
-    private final IPatientRepository repository;
+    private final PatientRepository repository;
     private final UserService userService;
 
     public Patient createPatient(Patient patient) {

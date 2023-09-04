@@ -1,7 +1,7 @@
 package com.DocDB.service;
 
 import com.DocDB.entities.Doctor;
-import com.DocDB.reposiory.IDoctorRepository;
+import com.DocDB.reposiory.DoctorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorService {
 
-    private final IDoctorRepository repository;
+    private final DoctorRepository repository;
 
     public Doctor createDoctor(Doctor doctor) {
 
