@@ -40,6 +40,8 @@ public class Appointment {
     private Date date;
     private String details;
     private String observations;
+    @Column(name = "appointment_type")
+    @Enumerated(EnumType.STRING)
     private AppointmentType type;
 
     @ManyToOne

@@ -30,7 +30,6 @@ public class DoctorService {
     public List<Doctor> findByFirstname(String firstname){return repository.findByFirstname(firstname);}
     public List<Doctor> findByLastname(String lastname){return repository.findByLastname(lastname);}
     public List<Doctor> findByFirstnameAndLastname(String firstname, String lastname){return repository.findByFirstnameAndLastname(firstname, lastname);}
-
     public List<Doctor> findBySpeciality(String speciality){
         return repository.findBySpeciality(speciality);
     }
