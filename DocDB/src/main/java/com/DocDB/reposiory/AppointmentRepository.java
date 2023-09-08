@@ -28,4 +28,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
     @Query("SELECT a from Appointment a WHERE a.observations LIKE %:filter%")
     List<Appointment> findAppointmentByObservations(@Param("filter") String filter);
 
+
 }
