@@ -18,9 +18,15 @@ public class AppointmentService {
     private final AppointmentRepository repository;
 
     public Appointment getAppointmentById(Long id){return repository.getById(id);}
+
+    public List<Appointment> getAppointmentByDoctorIdAndDateGreaterThan(Long id){
+        return repository.findAppointmentByDoctorIdAndDateGreaterThan(id, new java.sql.Date(System.currentTimeMillis()));
+    }
+
     public List<Appointment> getAppointmentByPatientIdAndDateGreaterThan(Long id){
         return repository.findAppointmentByPatientIdAndDateGreaterThan(id, new java.sql.Date(System.currentTimeMillis()));
     }
+
     public List<Appointment> findAppointmentByObservations(String observations){
         return repository.findAppointmentByObservations(observations);
     }

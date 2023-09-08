@@ -18,25 +18,32 @@ public class AppointmentController {
     private final AppointmentService service;
 
     @GetMapping(value = "/appointment")
-    public Appointment getAppointmentById(@RequestParam(value = "id") Long id){
+    public Appointment getAppointmentById(@RequestParam(value = "id") Long id) {
         return service.findById(id);
     }
-    @GetMapping(value = "/FutureAppointments")
-    public List<Appointment> getAppointmentByIdAnAppointment(@RequestParam(value = "id") Long id){
+
+    @GetMapping(value = "/DoctorFutureAppointments")
+    public List<Appointment> getFutureAppointmentsByDoctor(@RequestParam(value = "id") Long id) {
+        return service.getAppointmentByDoctorIdAndDateGreaterThan(id);
+    }
+
+    @GetMapping(value = "/PatientFutureAppointments")
+    public List<Appointment> getFutureAppointmentByPatient(@RequestParam(value = "id") Long id) {
         return service.getAppointmentByPatientIdAndDateGreaterThan(id);
     }
+
     @GetMapping(value = "/appointmentByObservations")
-    public List<Appointment> getAppointmentByObservations(@RequestParam(value = "observations") String observations){
+    public List<Appointment> getAppointmentByObservations(@RequestParam(value = "observations") String observations) {
         return service.findAppointmentByObservations(observations);
     }
 
     @GetMapping(value = "/appointmentsByDoctor")
-    public List <Appointment> getAppointmentsByDoctorId(@RequestParam(value = "id") Long id){
+    public List<Appointment> getAppointmentsByDoctorId(@RequestParam(value = "id") Long id) {
         return service.getDoctorAppointments(id);
     }
 
     @GetMapping(value = "/appointmentsByPatient")
-    public List <Appointment> getAppointmentsByPatientId(@RequestParam(value = "id") Long id){
+    public List<Appointment> getAppointmentsByPatientId(@RequestParam(value = "id") Long id) {
         return service.getPatientAppointments(id);
     }
 
