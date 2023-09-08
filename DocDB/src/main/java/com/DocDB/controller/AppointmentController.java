@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://127.0.0.1:5500/")
 @RestController
@@ -17,15 +18,20 @@ public class AppointmentController {
 
     private final AppointmentService service;
 
+    private final AppointmentRepository repository;
+
     @GetMapping(value = "/appointment")
-    public Appointment getAppointmentById(@RequestParam(value = "id") Long id){
-        return service.findById(id);
+    public Optional<Appointment> getAppointmentById(@RequestParam(value = "id") Long id){
+        return repository.findById(id);
     }
-    @GetMapping(value = "/FutureAppointment")
-    public List<Appointment> getAppointmentByIdAnAppointment(@RequestParam(value = "id") Long id){
-        System.out.println("AppointmentController.getAppointmentByIdAnAppointment");
-        System.out.println("id = " + id);
-        return service.getAppointmentByPatientIdAndDateGreaterThan(id);
+    @GetMapping(value = "/DoctorFutureAppointment")
+    public List<Appointment> getAppointmentByDoctorId(@RequestParam(value = "id") Long id){
+        return service.getByDoctorIdAndDateGreaterThan(id);
+    }
+
+    @GetMapping(value = "/PatientFutureAppointment")
+    public List<Appointment> getAppointmentByPatientId(@RequestParam(value = "id") Long id){
+        return service.getByPatientIdAndDateGreaterThan(id);
     }
 
     @GetMapping(value = "/appointmentsByDoctor")

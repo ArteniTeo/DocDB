@@ -83,3 +83,7 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS "DocDB".users
     OWNER to postgres;
+
+
+ALTER TABLE "DocDB".appointments
+	ADD COLUMN appointment_type character varying;
