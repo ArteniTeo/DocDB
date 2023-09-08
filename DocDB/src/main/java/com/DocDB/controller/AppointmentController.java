@@ -21,11 +21,13 @@ public class AppointmentController {
     public Appointment getAppointmentById(@RequestParam(value = "id") Long id){
         return service.findById(id);
     }
-    @GetMapping(value = "/FutureAppointment")
+    @GetMapping(value = "/FutureAppointments")
     public List<Appointment> getAppointmentByIdAnAppointment(@RequestParam(value = "id") Long id){
-        System.out.println("AppointmentController.getAppointmentByIdAnAppointment");
-        System.out.println("id = " + id);
         return service.getAppointmentByPatientIdAndDateGreaterThan(id);
+    }
+    @GetMapping(value = "/appointmentByObservations")
+    public List<Appointment> getAppointmentByObservations(@RequestParam(value = "observations") String observations){
+        return service.findAppointmentByObservations(observations);
     }
 
     @GetMapping(value = "/appointmentsByDoctor")

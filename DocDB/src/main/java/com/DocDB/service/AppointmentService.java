@@ -19,13 +19,12 @@ public class AppointmentService {
 
     public Appointment getAppointmentById(Long id){return repository.getById(id);}
     public List<Appointment> getAppointmentByPatientIdAndDateGreaterThan(Long id){
-        System.out.println("############## AppointmentService.getByIdAndDateGreaterThan");
-        System.out.println("id = " + id);
-        Date fromDate = new java.sql.Date(System.currentTimeMillis());
-        System.out.println("##############  fromDate = " + fromDate);
-
-        return repository.findAppointmentByPatientIdAndDateGreaterThan(id, fromDate);
+        return repository.findAppointmentByPatientIdAndDateGreaterThan(id, new java.sql.Date(System.currentTimeMillis()));
     }
+    public List<Appointment> findAppointmentByObservations(String observations){
+        return repository.findAppointmentByObservations(observations);
+    }
+
 
     public Appointment createAppointment(Appointment appointment){
         return repository.save(appointment);
