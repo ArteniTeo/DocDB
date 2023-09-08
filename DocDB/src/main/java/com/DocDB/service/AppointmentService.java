@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -16,6 +18,14 @@ public class AppointmentService {
     private final AppointmentRepository repository;
 
     public Appointment getAppointmentById(Long id){return repository.getById(id);}
+    public List<Appointment> getByIdAndDateGreaterThan(Long id){
+        System.out.println("############## AppointmentService.getByIdAndDateGreaterThan");
+        System.out.println("id = " + id);
+
+        Date fromDate = new Date(123, 9, 8);
+        System.out.println("################## fromDate = " + fromDate);
+        return repository.findByIdAndDateGreaterThan(id, fromDate);
+    }
 
     public Appointment createAppointment(Appointment appointment){
         return repository.save(appointment);
@@ -39,4 +49,7 @@ public class AppointmentService {
 
     public List<Appointment> getPatientLabResults(Long id){return null;}
 
+    public Appointment findById(Long id) {
+        return repository.getById(id);
+    }
 }

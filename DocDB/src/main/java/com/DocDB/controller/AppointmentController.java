@@ -17,11 +17,15 @@ public class AppointmentController {
 
     private final AppointmentService service;
 
-    private final AppointmentRepository repository;
-
     @GetMapping(value = "/appointment")
     public Appointment getAppointmentById(@RequestParam(value = "id") Long id){
-        return repository.findById(id).orElseThrow();
+        return service.findById(id);
+    }
+    @GetMapping(value = "/FutureAppointment")
+    public List<Appointment> getAppointmentByIdAnAppointment(@RequestParam(value = "id") Long id){
+        System.out.println("AppointmentController.getAppointmentByIdAnAppointment");
+        System.out.println("id = " + id);
+        return service.getByIdAndDateGreaterThan(id);
     }
 
     @GetMapping(value = "/appointmentsByDoctor")
