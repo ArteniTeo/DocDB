@@ -25,7 +25,7 @@ public class AppointmentController {
     public List<Appointment> getAppointmentByIdAnAppointment(@RequestParam(value = "id") Long id){
         System.out.println("AppointmentController.getAppointmentByIdAnAppointment");
         System.out.println("id = " + id);
-        return service.getByIdAndDateGreaterThan(id);
+        return service.getAppointmentByPatientIdAndDateGreaterThan(id);
     }
 
     @GetMapping(value = "/appointmentsByDoctor")
