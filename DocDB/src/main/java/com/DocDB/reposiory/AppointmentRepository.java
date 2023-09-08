@@ -29,4 +29,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
     List<Appointment> findAppointmentByObservations(@Param("filter") String filter);
 
 
+
+
 }
