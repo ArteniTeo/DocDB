@@ -21,9 +21,4 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 
     List<Appointment> findAppointmentByDoctorIdAndDateGreaterThan(Long id, Date date);
 
-
-
-
-
-
 }
