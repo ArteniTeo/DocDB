@@ -13,6 +13,9 @@ import java.util.List;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 
+    @Query("SELECT a from Appointment a")
+    List<Appointment> getAppointments();
+
     List <Appointment> getAppointmentByPatientId(Long id);
 
     List<Appointment> getAppointmentByDate(Date date);
@@ -27,8 +30,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 
     @Query("SELECT a from Appointment a WHERE a.observations LIKE %:filter%")
     List<Appointment> findAppointmentByObservations(@Param("filter") String filter);
-
-
-
 
 }

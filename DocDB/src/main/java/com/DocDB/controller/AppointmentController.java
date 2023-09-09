@@ -17,6 +17,11 @@ public class AppointmentController {
 
     private final AppointmentService service;
 
+    @GetMapping(value = "/appointments")
+    public List<Appointment> getAllAppointments() {
+        return service.getAllAppointments();
+    }
+
     @GetMapping(value = "/appointment")
     public Appointment getAppointmentById(@RequestParam(value = "id") Long id) {
         return service.findById(id);

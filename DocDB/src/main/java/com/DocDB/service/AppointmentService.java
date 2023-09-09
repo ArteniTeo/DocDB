@@ -57,4 +57,8 @@ public class AppointmentService {
     public Appointment findById(Long id) {
         return repository.findById(id).orElse(new Appointment());
     }
+
+    public List<Appointment> getAllAppointments() {
+        return repository.getAppointments();
+    }
 }

@@ -19,6 +19,11 @@ public class DoctorController {
         return service.findByUserId(id);
     }
 
+    @GetMapping(value = "/doctors")
+    public List<Doctor> getAllDoctors() {
+        return service.getAllDoctors();
+    }
+
     @RequestMapping(value = "/docByFirstname", method = RequestMethod.GET)
     public List<Doctor> getByFirstname(@RequestParam(value = "fname") String fname) {
         return service.findByFirstname(fname);
@@ -31,8 +36,8 @@ public class DoctorController {
 
     @RequestMapping(value = "/docByFullName", method = RequestMethod.GET)
     public List<Doctor> getByFullName(@RequestParam(value = "fname") String firstname,
-                                @RequestParam(value = "lname") String lastname) {
-        return service.findByFirstnameAndLastname(firstname,lastname);
+                                      @RequestParam(value = "lname") String lastname) {
+        return service.findByFirstnameAndLastname(firstname, lastname);
     }
 
     @RequestMapping(value = "/docBySpeciality", method = RequestMethod.GET)

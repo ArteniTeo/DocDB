@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import java.sql.Date;
+import java.sql.Time;
 
 
 @Entity
@@ -38,6 +39,7 @@ public class Appointment {
     )
     private Long id;
     private Date date;
+    private Time time;
     private String details;
     private String observations;
     @Column(name = "appointment_type")
