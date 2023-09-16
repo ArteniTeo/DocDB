@@ -27,7 +27,7 @@ public class DoctorService {
     }
 
     public List<Doctor> getAllDoctors() {
-        return repository.getDoctor();
+        return repository.findAll();
     }
 
     public Doctor findByUserId(Long id) {
@@ -46,9 +46,9 @@ public class DoctorService {
         return repository.findByFirstnameAndLastname(firstname, lastname);
     }
 
-    public List<Doctor> findBySpeciality(String speciality) {
-        return repository.findBySpeciality(speciality);
-    }
+//    public List<Doctor> findBySpeciality(String speciality) {
+//        return repository.findBySpeciality(speciality);
+//    }
 
 
 }

@@ -28,6 +28,8 @@ public class Doctor {
     private Long userId;
     private String firstname;
     private String lastname;
-    private String speciality;
+    @OneToOne
+    @JoinColumn(name = "speciality_id")
+    private Speciality speciality;
 
 }

@@ -87,3 +87,6 @@ ALTER TABLE IF EXISTS "DocDB".users
 
 ALTER TABLE "DocDB".appointments
 	ADD COLUMN appointment_type character varying;
+
+ALTER TABLE "DocDB".appointments
+	ADD COLUMN "time" time with time zone;

@@ -59,6 +59,6 @@ public class AppointmentService {
     }
 
     public List<Appointment> getAllAppointments() {
-        return repository.getAppointments();
+        return repository.findAll();
     }
 }

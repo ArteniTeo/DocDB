@@ -9,13 +9,17 @@ import java.util.List;
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
 
-    @Query("SELECT d from Doctor d")
-    List<Doctor> getDoctor();
+    // Aparent exista deja o mtoda pt asta. Incredibil.
+//    @Query("SELECT d from Doctor d")
+//    List<Doctor> getDoctor();
     Doctor findByUserId(Long id);
+
     List<Doctor> findByFirstname(String firstname);
+
     List<Doctor> findByLastname(String lastname);
+
     List<Doctor> findByFirstnameAndLastname(String firstname, String lastname);
-    List<Doctor> findBySpeciality(String speciality);
+//    List<Doctor> findBySpeciality(String speciality);
 
 
 }

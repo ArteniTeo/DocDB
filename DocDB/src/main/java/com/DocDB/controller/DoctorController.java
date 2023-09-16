@@ -40,10 +40,10 @@ public class DoctorController {
         return service.findByFirstnameAndLastname(firstname, lastname);
     }
 
-    @RequestMapping(value = "/docBySpeciality", method = RequestMethod.GET)
-    public List<Doctor> findBySpeciality(@RequestParam(value = "speciality") String speciality) {
-        return service.findBySpeciality(speciality);
-    }
+//    @RequestMapping(value = "/docBySpeciality", method = RequestMethod.GET)
+//    public List<Doctor> findBySpeciality(@RequestParam(value = "speciality") String speciality) {
+//        return service.findBySpeciality(speciality);
+//    }
 
     @RequestMapping(value = "/doctor", method = RequestMethod.POST)
     public Doctor registerDoctor(@RequestBody Doctor doctor) {
