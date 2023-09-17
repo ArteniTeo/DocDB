@@ -1,8 +1,8 @@
 package com.DocDB.reposiory;
 
+import com.DocDB.common.AccountStatus;
 import com.DocDB.entities.User;
 import com.DocDB.common.AccountType;
-import com.DocDB.common.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -18,5 +18,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmailAndPassword(String email, String password);
 
-    List<User> findByStatusAndAccountType(Status status, AccountType accountType);
+    List<User> findByStatusAndAccountType(AccountStatus status, AccountType accountType);
 }

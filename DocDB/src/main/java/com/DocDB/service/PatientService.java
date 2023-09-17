@@ -1,6 +1,6 @@
 package com.DocDB.service;
 
-import com.DocDB.common.Status;
+import com.DocDB.common.AccountStatus;
 import com.DocDB.entities.Patient;
 import com.DocDB.entities.User;
 import com.DocDB.reposiory.PatientRepository;
@@ -29,7 +29,7 @@ public class PatientService {
         if(findByCnp(patient.getCnp()) != null) throw new RuntimeException("CNP already in use.");
 
         User updateUser = userService.getUserById(patient.getUserId());
-        updateUser.setStatus(Status.ACTIVE);
+        updateUser.setStatus(AccountStatus.ACTIVE);
         userService.updateUser(updateUser);
 
         return repository.save(patient);

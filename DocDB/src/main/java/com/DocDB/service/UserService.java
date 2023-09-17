@@ -1,7 +1,7 @@
 package com.DocDB.service;
 
+import com.DocDB.common.AccountStatus;
 import com.DocDB.common.AccountType;
-import com.DocDB.common.Status;
 import com.DocDB.entities.User;
 import com.DocDB.exception.UserNotFoundException;
 import com.DocDB.reposiory.UserRepository;
@@ -26,7 +26,7 @@ public class UserService {
         verifyPassword(user.getPassword());
         if (findByEmail(user.getEmail()) != null) throw new RuntimeException("Email already in use.");
         if (findByUsername(user.getUsername()) != null) throw new RuntimeException("Username already in use.");
-        user.setStatus(Status.UNCOMPLETED);
+        user.setStatus(AccountStatus.UNCOMPLETED);
         user.setAccountType(AccountType.PATIENT);
 
         return repository.save(user);
@@ -66,15 +66,15 @@ public class UserService {
     }
 
     public List<User> getAllActivePatients() {
-        return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.PATIENT);
+        return repository.findByStatusAndAccountType(AccountStatus.ACTIVE, AccountType.PATIENT);
     }
 
     public List<User> getAllSuspendedPatients() {
-        return repository.findByStatusAndAccountType(Status.SUSPENDED, AccountType.PATIENT);
+        return repository.findByStatusAndAccountType(AccountStatus.SUSPENDED, AccountType.PATIENT);
     }
 
     public List<User> getAllActiveDoctors() {
-        return repository.findByStatusAndAccountType(Status.ACTIVE, AccountType.DOCTOR);
+        return repository.findByStatusAndAccountType(AccountStatus.ACTIVE, AccountType.DOCTOR);
     }
 
 }

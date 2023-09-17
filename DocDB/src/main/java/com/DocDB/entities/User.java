@@ -1,7 +1,7 @@
 package com.DocDB.entities;
 
+import com.DocDB.common.AccountStatus;
 import com.DocDB.common.AccountType;
-import com.DocDB.common.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,7 +34,7 @@ public class User {
     private String username;
     private String password;
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private AccountStatus status;
     @Column(name = "account_type")
     @Enumerated(EnumType.STRING)
     private AccountType accountType;

@@ -1,6 +1,6 @@
 package com.DocDB.common;
 
-public enum Status {
+public enum AccountStatus {
     UNCOMPLETED,
     ACTIVE,
     DELETED,
