@@ -17,8 +17,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 //    @Query("SELECT a from Appointment a")
 //    List<Appointment> getAppointments();
 
-    @Query("SELECT a from Appointment a WHERE a.patient_id = :id ORDER by a.date")
-    List <Appointment> getAppointmentByPatientId(@Param("id") Long id);
+//    @Query("SELECT a from Appointment a WHERE a.patient_id = :id ORDER by a.date")
+    List <Appointment> getAppointmentByPatientId(Long id);
 
     List<Appointment> getAppointmentByDate(Date date);
 
@@ -34,6 +34,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
     List<Appointment> findAppointmentByObservations(@Param("filter") String filter);
 
     List<Appointment> findByPatient_IdOrderByDateAsc(Long id, Sort sort);
+
+    List<Appointment> findByDoctor_IdOrderByDateAsc(Long id, Sort sort);
 
     List<Appointment> findByPatient_LastnameLikeIgnoreCaseOrderByPatient_LastnameAsc(String lastname, Sort sort);
 
