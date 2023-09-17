@@ -4,6 +4,7 @@ import com.DocDB.entities.Appointment;
 import com.DocDB.reposiory.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -61,4 +62,8 @@ public class AppointmentService {
     public List<Appointment> getAllAppointments() {
         return repository.findAll();
     }
+    public List<Appointment> findByPatient_LastnameLikeIgnoreCaseOrderByPatient_LastnameAsc(String lastname) {
+        return repository.findByPatient_LastnameLikeIgnoreCaseOrderByPatient_LastnameAsc(lastname, Sort.by("lastname") );
+    }
+
 }
