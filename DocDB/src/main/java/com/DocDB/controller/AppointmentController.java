@@ -1,7 +1,6 @@
 package com.DocDB.controller;
 
 import com.DocDB.entities.Appointment;
-import com.DocDB.reposiory.AppointmentRepository;
 import com.DocDB.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,11 +31,6 @@ public class AppointmentController {
         return service.getAppointmentByDoctorIdAndDateGreaterThan(id);
     }
 
-    @GetMapping(value = "/PatientFutureAppointments")
-    public List<Appointment> getFutureAppointmentByPatient(@RequestParam(value = "id") Long id) {
-        return service.getAppointmentByPatientIdAndDateGreaterThan(id);
-    }
-
     @GetMapping(value = "/appointmentByObservations")
     public List<Appointment> getAppointmentByObservations(@RequestParam(value = "observations") String observations) {
         return service.findAppointmentByObservations(observations);
@@ -47,9 +41,14 @@ public class AppointmentController {
         return service.getDoctorAppointments(id);
     }
 
-    @GetMapping(value = "/appointmentsByPatient")
-    public List<Appointment> getAppointmentsByPatientId(@RequestParam(value = "id") Long id) {
-        return service.getPatientAppointments(id);
+    @GetMapping(value = "/patientAppointmentsAscOrdered")
+    public List<Appointment> getFutureAppointmentByPatientAsc(@RequestParam(value = "id") Long id) {
+        return service.getPatientAppointmentsOrderByAscendingDate(id);
+    }
+
+    @GetMapping(value = "/patientAppointmentsDescOrdered")
+    public List<Appointment> getFutureAppointmentByPatientDesc(@RequestParam(value = "id") Long id) {
+        return service.getPatientAppointmentsOrderByDescendingDate(id);
     }
 
     @PostMapping(value = "/appointment")
@@ -58,6 +57,14 @@ public class AppointmentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAppointment);
     }
 
+    @PutMapping(value = "/rescheduleAppointment")
+    public void rescheduleAppointment(@RequestBody Appointment appointment) {
+        service.rescheduleAppointment(appointment);
+    }
 
+    @PutMapping(value = "/cancelAppointment")
+    public void cancelAppointment(@RequestParam(value = "id") Long id) {
+        service.cancelAppointment(id);
+    }
 
 }

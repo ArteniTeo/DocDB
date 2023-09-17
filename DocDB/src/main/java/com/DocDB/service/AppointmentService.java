@@ -1,5 +1,6 @@
 package com.DocDB.service;
 
+import com.DocDB.common.AppointmentStatus;
 import com.DocDB.entities.Appointment;
 import com.DocDB.reposiory.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,42 +19,27 @@ public class AppointmentService {
 
     private final AppointmentRepository repository;
 
-    public Appointment getAppointmentById(Long id){return repository.getById(id);}
-
     public List<Appointment> getAppointmentByDoctorIdAndDateGreaterThan(Long id){
         return repository.findAppointmentByDoctorIdAndDateGreaterThan(id, new java.sql.Date(System.currentTimeMillis()));
-    }
-
-    public List<Appointment> getAppointmentByPatientIdAndDateGreaterThan(Long id){
-        return repository.findAppointmentByPatientIdAndDateGreaterThan(id, new java.sql.Date(System.currentTimeMillis()));
     }
 
     public List<Appointment> findAppointmentByObservations(String observations){
         return repository.findAppointmentByObservations(observations);
     }
 
-
     public Appointment createAppointment(Appointment appointment){
         return repository.save(appointment);
     }
 
-    public Appointment modifyAppointment(Appointment appointment){
-        return repository.save(appointment);
-    }
-
-    public void cancelAppointment(Appointment appointment){
-        repository.delete(appointment);
+    public void cancelAppointment(Long id){
+        Appointment canceledAppointment = repository.getById(id);
+        canceledAppointment.setStatus(AppointmentStatus.CANCELED);
+        repository.save(canceledAppointment);
     }
 
     public List<Appointment> getDoctorAppointments(Long id){
         return repository.getAppointmentByDoctorId(id);
     }
-
-    public List<Appointment> getPatientAppointments(Long id){
-        return repository.getAppointmentByPatientId(id);
-    }
-
-    public List<Appointment> getPatientLabResults(Long id){return null;}
 
     public Appointment findById(Long id) {
         return repository.findById(id).orElse(new Appointment());
@@ -62,8 +48,20 @@ public class AppointmentService {
     public List<Appointment> getAllAppointments() {
         return repository.findAll();
     }
+
+    public List<Appointment> getPatientAppointmentsOrderByAscendingDate(Long patientId){
+        return repository.findByPatient_IdOrderByDateAsc(patientId, Sort.by("date"));
+    }
+
+    public List<Appointment> getPatientAppointmentsOrderByDescendingDate(Long patientId){
+        return repository.findByPatient_IdOrderByDateDesc(patientId, Sort.by("date"));
+    }
+
     public List<Appointment> findByPatient_LastnameLikeIgnoreCaseOrderByPatient_LastnameAsc(String lastname) {
         return repository.findByPatient_LastnameLikeIgnoreCaseOrderByPatient_LastnameAsc(lastname, Sort.by("lastname") );
     }
 
+    public void rescheduleAppointment(Appointment appointment) {
+        repository.updateDateForAppointment(appointment.getDate(), appointment.getTime(), appointment.getId());
+    }
 }

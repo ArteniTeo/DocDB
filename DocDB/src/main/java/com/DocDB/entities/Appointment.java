@@ -1,5 +1,6 @@
 package com.DocDB.entities;
 
+import com.DocDB.common.AppointmentStatus;
 import com.DocDB.common.AppointmentType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -42,6 +43,9 @@ public class Appointment {
     private Time time;
     private String details;
     private String observations;
+    @Column(name = "appointment_status")
+    @Enumerated(EnumType.STRING)
+    private AppointmentStatus status;
     @Column(name = "appointment_type")
     @Enumerated(EnumType.STRING)
     private AppointmentType type;
