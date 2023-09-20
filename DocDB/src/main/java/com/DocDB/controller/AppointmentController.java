@@ -26,19 +26,12 @@ public class AppointmentController {
         return service.findById(id);
     }
 
-    @GetMapping(value = "/DoctorFutureAppointments")
-    public List<Appointment> getFutureAppointmentsByDoctor(@RequestParam(value = "id") Long id) {
-        return service.getAppointmentByDoctorIdAndDateGreaterThan(id);
-    }
+    // PATIENT APPOINTMENTS CONTROLLERS ==========================================================
 
-    @GetMapping(value = "/appointmentByObservations")
-    public List<Appointment> getAppointmentByObservations(@RequestParam(value = "observations") String observations) {
-        return service.findAppointmentByObservations(observations);
-    }
-
-    @GetMapping(value = "/appointmentsByDoctor")
-    public List<Appointment> getAppointmentsByDoctorId(@RequestParam(value = "id") Long id) {
-        return service.getDoctorAppointments(id);
+    @PostMapping(value = "/appointment")
+    public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
+        Appointment createdAppointment = service.createAppointment(appointment);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdAppointment);
     }
 
     @GetMapping(value = "/patientAppointmentsAscOrdered")
@@ -51,12 +44,6 @@ public class AppointmentController {
         return service.getPatientAppointmentsOrderByDescendingDate(id);
     }
 
-    @PostMapping(value = "/appointment")
-    public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
-        Appointment createdAppointment = service.createAppointment(appointment);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdAppointment);
-    }
-
     @PutMapping(value = "/rescheduleAppointment")
     public void rescheduleAppointment(@RequestBody Appointment appointment) {
         service.rescheduleAppointment(appointment);
@@ -65,6 +52,28 @@ public class AppointmentController {
     @PutMapping(value = "/cancelAppointment")
     public void cancelAppointment(@RequestParam(value = "id") Long id) {
         service.cancelAppointment(id);
+    }
+
+    // DOCTOR APPOINTMENTS CONTROLLERS ==========================================================
+
+    @GetMapping(value = "/DoctorFutureAppointments")
+    public List<Appointment> getFutureAppointmentsByDoctor(@RequestParam(value = "id") Long id) {
+        return service.getAppointmentByDoctorIdAndDateGreaterThan(id);
+    }
+
+    @GetMapping(value = "/appointmentsByDoctor")
+    public List<Appointment> getAppointmentsByDoctorId(@RequestParam(value = "id") Long id) {
+        return service.getDoctorAppointments(id);
+    }
+
+    @GetMapping(value = "/docAppointmentsAscOrdered")
+    public List<Appointment> getFutureAppointmentByDocAsc(@RequestParam(value = "id") Long id) {
+        return service.getDoctorAppointmentsOrderByAscendingDate(id);
+    }
+
+    @GetMapping(value = "/docAppointmentsDescOrdered")
+    public List<Appointment> getFutureAppointmentByDocDesc(@RequestParam(value = "id") Long id) {
+        return service.getDoctorAppointmentsOrderByDescendingDate(id);
     }
 
 }

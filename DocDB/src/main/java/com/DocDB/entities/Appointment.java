@@ -42,7 +42,6 @@ public class Appointment {
     private Date date;
     private Time time;
     private String details;
-    private String observations;
     @Column(name = "appointment_status")
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
@@ -56,5 +55,8 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
+    @OneToOne
+    @JoinColumn(name = "observation_id")
+    private Observation observation;
 
 }
