@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @CrossOrigin(origins = "http://127.0.0.1:5500/")
@@ -42,6 +43,23 @@ public class AppointmentController {
     @GetMapping(value = "/patientAppointmentsDescOrdered")
     public List<Appointment> getFutureAppointmentByPatientDesc(@RequestParam(value = "id") Long id) {
         return service.getPatientAppointmentsOrderByDescendingDate(id);
+    }
+
+    @GetMapping(value = "/patientDateSpecificAppointment")
+    public List<Appointment> getPatientAppointmentsByGivenDates(
+            @RequestParam(value = "id") Long id,
+            @RequestParam(value = "fromDate", required = false) Date fromDate,
+            @RequestParam(value = "toDate", required = false) Date toDate){
+
+        if(fromDate == null && toDate == null){
+            return service.getPatientAppointmentsOrderByDescendingDate(id);
+        } else if (fromDate != null && toDate == null) {
+            return service.getPatientAppointmentsFromDateToLastAndOrderedDescByDate(id, fromDate);
+        } else if (fromDate == null && toDate != null){
+            return service.getPatientAppointmentsFromFirstToDateAndOrderedDescByDate(id, toDate);
+        } else {
+            return service.getPatientAppointmentsFromDateToDateAndOrderedDescByDate(id, fromDate, toDate);
+        }
     }
 
     @PutMapping(value = "/rescheduleAppointment")

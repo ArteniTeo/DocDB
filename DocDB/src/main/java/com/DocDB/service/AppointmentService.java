@@ -19,16 +19,6 @@ public class AppointmentService {
 
     private final AppointmentRepository repository;
 
-    public Appointment createAppointment(Appointment appointment) {
-        return repository.save(appointment);
-    }
-
-    public void cancelAppointment(Long id) {
-        Appointment canceledAppointment = repository.getById(id);
-        canceledAppointment.setStatus(AppointmentStatus.CANCELED);
-        repository.save(canceledAppointment);
-    }
-
     public Appointment findById(Long id) {
         return repository.findById(id).orElse(new Appointment());
     }
@@ -39,6 +29,10 @@ public class AppointmentService {
 
     // PATIENT APPOINTMENTS SERVICE ==========================================================
 
+    public Appointment createAppointment(Appointment appointment) {
+        return repository.save(appointment);
+    }
+
     public List<Appointment> getPatientAppointmentsOrderByAscendingDate(Long patientId) {
         return repository.findByPatient_IdOrderByDateAsc(patientId, Sort.by("date"));
     }
@@ -47,8 +41,26 @@ public class AppointmentService {
         return repository.findByPatient_IdOrderByDateDesc(patientId, Sort.by("date"));
     }
 
+    public List<Appointment> getPatientAppointmentsFromDateToLastAndOrderedDescByDate(Long patientId, Date fromDate) {
+        return repository.findByPatient_IdAndDateGreaterThanOrderByDateDesc(patientId, fromDate);
+    }
+
+    public List<Appointment> getPatientAppointmentsFromFirstToDateAndOrderedDescByDate(Long patientId, Date toDate) {
+        return repository.findByPatient_IdAndDateLessThanOrderByDateDesc(patientId, toDate);
+    }
+
+    public List<Appointment> getPatientAppointmentsFromDateToDateAndOrderedDescByDate(Long patientId, Date fromDate, Date toDate) {
+        return repository.findByPatient_IdAndDateGreaterThanAndDateLessThanOrderByDateDesc(patientId, fromDate, toDate);
+    }
+
     public void rescheduleAppointment(Appointment appointment) {
         repository.updateDateForAppointment(appointment.getDate(), appointment.getTime(), appointment.getId());
+    }
+
+    public void cancelAppointment(Long id) {
+        Appointment canceledAppointment = repository.getById(id);
+        canceledAppointment.setStatus(AppointmentStatus.CANCELED);
+        repository.save(canceledAppointment);
     }
 
     // DOCTOR APPOINTMENTS SERVICE ==========================================================

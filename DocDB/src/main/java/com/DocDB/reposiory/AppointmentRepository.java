@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
+import java.util.Optional;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 
@@ -23,7 +24,11 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 
     List<Appointment> findByPatient_IdOrderByDateDesc(Long id, Sort sort);
 
-//    List<Appointment> findByPatient_IdAndDateGreaterThanAndDateLessThanOrderByDateDesc(Long id, Date fromDate, Date toDate);
+    List<Appointment> findByPatient_IdAndDateGreaterThanOrderByDateDesc(Long id, Date fromDate);
+
+    List<Appointment> findByPatient_IdAndDateLessThanOrderByDateDesc(Long id, Date toDate);
+
+    List<Appointment> findByPatient_IdAndDateGreaterThanAndDateLessThanOrderByDateDesc(Long id, Date fromDate, Date toDate);
 
     // DOCTOR APPOINTMENTS REPOSITORIES ==========================================================
 
