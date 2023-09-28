@@ -2,7 +2,9 @@ package com.DocDB.service;
 
 import com.DocDB.common.AppointmentStatus;
 import com.DocDB.entities.Appointment;
+import com.DocDB.entities.Observation;
 import com.DocDB.reposiory.AppointmentRepository;
+import com.DocDB.reposiory.ObservationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class AppointmentService {
 
     private final AppointmentRepository repository;
+    private final ObservationRepository obsRepository;
 
     public Appointment findById(Long id) {
         return repository.findById(id).orElse(new Appointment());
@@ -79,5 +82,13 @@ public class AppointmentService {
 
     public List<Appointment> getDoctorAppointments(Long id) {
         return repository.getAppointmentByDoctorId(id);
+    }
+
+    public Appointment completeAnAppointment(Long appointmentId, Long observationId) {
+        Appointment completedAppointment = repository.getById(appointmentId);
+        completedAppointment.setStatus(AppointmentStatus.COMPLETED);
+        Observation obs = obsRepository.getById(observationId);
+        completedAppointment.setObservation(obs);
+        return repository.save(completedAppointment);
     }
 }

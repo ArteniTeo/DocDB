@@ -49,13 +49,13 @@ public class AppointmentController {
     public List<Appointment> getPatientAppointmentsByGivenDates(
             @RequestParam(value = "id") Long id,
             @RequestParam(value = "fromDate", required = false) Date fromDate,
-            @RequestParam(value = "toDate", required = false) Date toDate){
+            @RequestParam(value = "toDate", required = false) Date toDate) {
 
-        if(fromDate == null && toDate == null){
+        if (fromDate == null && toDate == null) {
             return service.getPatientAppointmentsOrderByDescendingDate(id);
         } else if (fromDate != null && toDate == null) {
             return service.getPatientAppointmentsFromDateToLastAndOrderedDescByDate(id, fromDate);
-        } else if (fromDate == null && toDate != null){
+        } else if (fromDate == null && toDate != null) {
             return service.getPatientAppointmentsFromFirstToDateAndOrderedDescByDate(id, toDate);
         } else {
             return service.getPatientAppointmentsFromDateToDateAndOrderedDescByDate(id, fromDate, toDate);
@@ -92,6 +92,11 @@ public class AppointmentController {
     @GetMapping(value = "/docAppointmentsDescOrdered")
     public List<Appointment> getFutureAppointmentByDocDesc(@RequestParam(value = "id") Long id) {
         return service.getDoctorAppointmentsOrderByDescendingDate(id);
+    }
+
+    @PutMapping(value = "/completeAppointment")
+    public void completeAppointment(@RequestParam(name = "appId") Long appId, @RequestParam(name = "obsId") Long obsId) {
+        service.completeAnAppointment(appId, obsId);
     }
 
 }
