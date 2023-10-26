@@ -24,6 +24,29 @@ ALTER SEQUENCE "DocDB".doctors_id_seq
 
 --======================================================
 
+CREATE SEQUENCE IF NOT EXISTS "DocDB"."lab results_id_seq"
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1
+    OWNED BY lab_results.id;
+
+--======================================================
+
+CREATE SEQUENCE IF NOT EXISTS "DocDB".observations_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1
+    OWNED BY observations.id;
+
+ALTER SEQUENCE "DocDB".observations_id_seq
+    OWNER TO postgres;
+
+--======================================================
+
 CREATE SEQUENCE IF NOT EXISTS "DocDB".patients_id_seq
     INCREMENT 1
     START 1
